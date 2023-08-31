@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: black;
+    background-color: rgb(46, 37, 37);
 }
 
 .text-box-wrapper {
@@ -137,4 +137,16 @@ body {
     align-items: center;
     margin-bottom: 5px;
     color: rgb(47, 2, 247);
+}
+.message-content.message-text {
+    width: 80%;
+    font-size: 16px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    resize: none;
+    background-color: rgba(12, 10, 10, 0.263);
+    color: white;
+    margin-bottom: 5px;
 }

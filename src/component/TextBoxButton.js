@@ -48,6 +48,7 @@ function TextBoxButton() {
     const handleButtonClick = () => {
         const message = {
             text: textBoxValue,
+            formatting: { ...formatOptions }, 
             files: selectedFiles,
             timestamp: new Date().getTime(),
             user: currentUser,
@@ -89,7 +90,7 @@ function TextBoxButton() {
         <div className="App-header">
             <div className="text-box-wrapper">
                 <div className="format-icons">
-                    {/* Format buttons */}
+
                     <button
                         className={`format-btn ${formatOptions.isBold ? 'active' : ''}`}
                         onClick={() => handleFormatOptionClick('isBold')}
@@ -152,21 +153,30 @@ function TextBoxButton() {
                 {/* Render chat messages */}
                 {chatMessages.map((message, index) => (
                     <div
-                        key={index}
-                        className={`message ${message.user === currentUser ? 'current-user' : 'other-user'}`}
-                    >
-                        <div className="message-sender">{message.user}</div>
-                        <div className="message-content">{message.text}</div>
-                        {message.files && (
-                            <div className="message-files">
-                                {message.files.map((file, fileIndex) => (
-                                    <div key={fileIndex} className="file-item">
-                                        {file.name}
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
+    key={index}
+    className={`message ${message.user === currentUser ? 'current-user' : 'other-user'}`}
+>
+    <div className="message-sender">{message.user}</div>
+    <div
+        className={`message-content message-text ${
+            message.formatting.isBold ? 'bold' : ''
+        } ${message.formatting.isItalic ? 'italic' : ''} ${
+            message.formatting.isStrikethrough ? 'strikethrough' : ''
+        } ${message.formatting.isUnderline ? 'underline' : ''}`}
+    >
+        {message.text}
+    </div>
+    {message.files && (
+        <div className="message-files">
+            {message.files.map((file, fileIndex) => (
+                <div key={fileIndex} className="file-item">
+                    {file.name}
+                </div>
+            ))}
+        </div>
+    )}
+</div>
+
                 ))}
             </div>
             <div className="user-selector">
